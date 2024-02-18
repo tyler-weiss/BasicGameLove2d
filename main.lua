@@ -43,27 +43,39 @@ function love.update(dt)
    cam:lookAt(Player.x, Player.y)
 
    -- Get our game window dimentions
-   local w = love.graphics.getWidth()
-   local h = love.graphics.getHeight()
-   -- Left border
-   if cam.x < w / 2 then
-      cam.x = w / 2
+   local windowWidth = love.graphics.getWidth()
+   local windowHeight = love.graphics.getHeight()
+   local mapW = Map.width * Map.tilewidth
+   local mapH = Map.height * Map.tileheight -- Left border
+   if cam.x < windowWidth / 2 then
+      cam.x = windowWidth / 2
    end
    -- Top border
-   if cam.y < h / 2 then
-      cam.y = h / 2
+   if cam.y < windowHeight / 2 then
+      cam.y = windowHeight / 2
    end
 
-   local mapW = Map.width * Map.tilewidth
-   local mapH = Map.height * Map.tileheight
 
+   if Player.x < 0 then
+      Player.x = 0
+   end
+   if Player.y < 0 then
+      Player.y = 0
+   end
+   if Player.x > mapW then
+      Player.x = mapW
+   end
+   if Player.y > mapH then
+      Player.y = mapH
+   end
+   -- Camera boundaries
    -- Right border
-   if cam.x > (mapW - w / 2) then
-      cam.x = (mapW - w / 2)
+   if cam.x > (mapW - windowWidth / 2) then
+      cam.x = (mapW - windowWidth / 2)
    end
    -- Bottom border
-   if cam.y > (mapH - h / 2) then
-      cam.y = (mapH - h / 2)
+   if cam.y > (mapH - windowHeight / 2) then
+      cam.y = (mapH - windowHeight / 2)
    end
 end
 
