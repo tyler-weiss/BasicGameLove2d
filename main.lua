@@ -85,5 +85,5 @@ function love.draw()
    Map:drawLayer(Map.layers['RoadTreeLayer'])
    Player.currentAnimation:draw(Player.spriteSheet, Player.x, Player.y, nil, 1, nil, 45, 49)
    cam:detach()
-   love.graphics.print(tostring(Player.x) .. ' ' .. tostring(Player.y))
+   love.graphics.print('Player location" '..tostring(Player.x) .. ' ' .. tostring(Player.y))
 end
